@@ -131,7 +131,8 @@ def copySolution(solution_board, output_board):
 class Solution:
     def solveSudoku(self, board: List[List[str]]) -> None:
         """
-        Do not return anything, modify board in-place instead.
+        Returns whether a solution is found (true/false). 
+        And modify input board to store solution found in place.
         """
         initial_board = SudokuBoard(board)
         assert initial_board.isValidSudoku()
@@ -164,16 +165,13 @@ class Solution:
                 if current_board.isFinishedSudoku():
                     # print(f'Solution found: {current_board}\n')
                     copySolution(current_board.getBoard(), board)
-                    return
+                    return True
                 
                 (next_position, next_values) = current_board.getNextMovePositionValues()
                 
             if not valid_board or not next_values:
-                # print(f'Is valid board {valid_board}. next_values are {next_values}')
                 continue
-            
-            # print(f'Next values are {next_values} at position {next_position}')
-    
+                
             for value in next_values:
                 # print(f'Setting value {value} at position {next_position}')
                 next_board = SudokuBoard(current_board.getBoard(), 
@@ -185,7 +183,7 @@ class Solution:
                     if next_board.isFinishedSudoku():
                         # print(f'Solution found: {next_board}\n')
                         copySolution(next_board.getBoard(), board)
-                        return
+                        return True
                     dfs_stack.append(next_board)
                     
-                    
+        return False
