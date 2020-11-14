@@ -146,10 +146,8 @@ class Game:
 
     # Display instruction for the game 
     def instruction(self):
-        text0 = self.font2.render("PRESS Q TO Quit", 1, (0, 0, 0)) 
         text1 = self.font2.render("PRESS D TO RESET TO DEFAULT / R TO EMPTY", 1, (0, 0, 0)) 
         text2 = self.font2.render("ENTER VALUES AND PRESS ENTER TO VISUALIZE", 1, (0, 0, 0))
-        self.screen.blit(text0, (20, 520))
         self.screen.blit(text1, (20, 540))        
         self.screen.blit(text2, (20, 560)) 
 
@@ -245,7 +243,7 @@ class Game:
                 flag2 = 0
 
             if val != 0:             
-                draw_val(val) 
+                self.draw_val(val) 
                 # print(self.x) 
                 # print(self.y) 
                 if self.valid(self.grid, int(self.x), int(self.y), val)== True: 
